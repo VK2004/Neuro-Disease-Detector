@@ -11,30 +11,30 @@ import helper
 
 # Setting page layout
 st.set_page_config(
-    page_title="Object Detection using YOLOv8",
-    page_icon="🤖",
+    page_title="Neuro Disease Detector",
+    page_icon="🩺",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # Main page heading
-st.title("Object Detection And Tracking using YOLOv8")
+st.title("Neurodegenerative Disease Detector using YOLOv8")
 
 # Sidebar
-st.sidebar.header("ML Model Config")
+st.sidebar.header("YOLOv8 Model Config")
 
 # Model Options
 model_type = st.sidebar.radio(
-    "Select Task", ['Detection', 'Segmentation'])
+    "Select Task", ['Pre-Trained', 'Exclusive'])
 
 confidence = float(st.sidebar.slider(
     "Select Model Confidence", 25, 100, 40)) / 100
 
 # Selecting Detection Or Segmentation
-if model_type == 'Detection':
-    model_path = Path(settings.DETECTION_MODEL)
-elif model_type == 'Segmentation':
-    model_path = Path(settings.SEGMENTATION_MODEL)
+if model_type == 'Pre-Trained':
+    model_path = Path(settings.PT_MODEL)
+elif model_type == 'Exclusive':
+    model_path = Path(settings.EX_MODEL)
 
 # Load Pre-trained ML Model
 try:
