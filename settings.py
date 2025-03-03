@@ -13,34 +13,25 @@ ROOT = ROOT.relative_to(Path.cwd())
 
 # Sources
 IMAGE = 'Image'
-VIDEO = 'Video'
-WEBCAM = 'Webcam'
-RTSP = 'RTSP'
-YOUTUBE = 'YouTube'
 
-SOURCES_LIST = [IMAGE, VIDEO, WEBCAM, RTSP, YOUTUBE]
+
+SOURCES_LIST = [IMAGE]
 
 # Images config
 IMAGES_DIR = ROOT / 'images'
-DEFAULT_IMAGE = IMAGES_DIR / 'office_4.jpg'
-DEFAULT_DETECT_IMAGE = IMAGES_DIR / 'office_4_detected.jpg'
+DEFAULT_IMAGE = IMAGES_DIR / 'Original.jpg'
+DEFAULT_DETECT_IMAGE = IMAGES_DIR / 'Detect.jpg'
 
-# Videos config
-VIDEO_DIR = ROOT / 'videos'
-VIDEOS_DICT = {
-    'video_1': VIDEO_DIR / 'video_1.mp4',
-    'video_2': VIDEO_DIR / 'video_2.mp4',
-    'video_3': VIDEO_DIR / 'video_3.mp4',
-}
+
 
 # ML Model config
 MODEL_DIR = ROOT / 'weights'
-DETECTION_MODEL = MODEL_DIR / 'yolov8n.pt'
+EX_MODEL = MODEL_DIR / 'neuro_disease_detector.pt'
 # In case of your custome model comment out the line above and
 # Place your custom model pt file name at the line below 
 # DETECTION_MODEL = MODEL_DIR / 'my_detection_model.pt'
 
-SEGMENTATION_MODEL = MODEL_DIR / 'yolov8n-seg.pt'
+PT_MODEL = MODEL_DIR / 'best.pt'
 
 # Webcam
 WEBCAM_PATH = 0
