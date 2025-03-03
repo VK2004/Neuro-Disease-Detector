@@ -26,8 +26,8 @@ DEFAULT_DETECT_IMAGE = IMAGES_DIR / 'Detect.jpg'
 
 # ML Model config
 MODEL_DIR = ROOT / 'weights'
-EX_MODEL = MODEL_DIR / 'neuro_disease_detector.pt'
-#EX_MODEL = MODEL_DIR / 'ut.pt'
+#EX_MODEL = MODEL_DIR / 'neuro_disease_detector.pt'
+EX_MODEL = MODEL_DIR / 'ut.pt'
 # In case of your custome model comment out the line above and
 # Place your custom model pt file name at the line below 
 # DETECTION_MODEL = MODEL_DIR / 'my_detection_model.pt'
