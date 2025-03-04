@@ -19,3 +19,5 @@ This app is up and running on Streamlit cloud server!!! You can check the demo o
 
 ## <span style="color:deepskyblue"> Identification of Neurodegenerative Diseases</span>
 
+https://github.com/user-attachments/assets/b947f981-eeb9-46f7-8dac-fd3ea2d3fde6
+
