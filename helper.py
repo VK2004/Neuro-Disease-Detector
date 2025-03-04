@@ -28,6 +28,21 @@ def display_tracker_options():
     return is_display_tracker, None
 
 
+def resize_frame(image, width=640, height=360):
+    """
+    Resize an image or video frame while maintaining aspect ratio.
+
+    Args:
+    - image (numpy array): Frame to be resized.
+    - width (int): Target width.
+    - height (int): Target height.
+
+    Returns:
+    - Resized image.
+    """
+    return cv2.resize(image, (width, height), interpolation=cv2.INTER_AREA)
+
+
 def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=None, tracker=None):
     """
     Display the detected objects on a video frame using the YOLOv8 model.
@@ -42,24 +57,19 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
     Returns:
     None
     """
-
-    # Resize the image to a standard size
-    image = cv2.resize(image, (512, int(512*(9/16))))
+    # Resize frame to 640x360
+    image = resize_frame(image, width=640, height=360)
 
     # Display object tracking, if specified
     if is_display_tracking:
         res = model.track(image, conf=conf, persist=True, tracker=tracker)
     else:
-        # Predict the objects in the image using the YOLOv8 model
         res = model.predict(image, conf=conf)
 
-    # # Plot the detected objects on the video frame
+    # Plot detected objects on the video frame
     res_plotted = res[0].plot()
-    st_frame.image(res_plotted,
-                   caption='Detected Video',
-                   channels="BGR",
-                   use_column_width=True
-                   )
+    st_frame.image(res_plotted, caption='Detected Video', channels="BGR", use_column_width=True)
+
 
 
 def get_youtube_stream_url(youtube_url):
