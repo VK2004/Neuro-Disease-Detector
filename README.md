@@ -1,4 +1,4 @@
-# <span style="color:deepskyblue"> Real-time Object Detection and Tracking with YOLOv8 & Streamlit </span>
+# <span style="color:deepskyblue"> Neurodegenerative Disease Detection </span>
 
 This repository is an extensive open-source project showcasing the seamless integration of **object detection and tracking** using **YOLOv8** (object detection algorithm), along with **Streamlit** (a popular Python web application framework for creating interactive web apps). The project offers a user-friendly and customizable interface designed to detect and track objects in real-time video streams from sources such as RTSP, UDP, and YouTube URLs, as well as static videos and images.
 
@@ -12,7 +12,7 @@ For a deeper dive into the implementation, check out my three-part blog series o
 Thank you team [Streamlit](<https://github.com/streamlit/streamlit>) for the community support for the cloud upload. 
 
 This app is up and running on Streamlit cloud server!!! You can check the demo of this web application on this link 
-[yolov8-streamlit-detection-tracking-webapp](https://yolov8-object-detection-and-tracking-app.streamlit.app/)
+[neuro-disorder-detector-webapp](https://neuro-disorder-detector.streamlit.app/)
 
 **Note**: In the demo, Due to non-availability of GPUs, you may encounter slow video inferencing.
 
@@ -131,11 +131,9 @@ This project is intended as a learning exercise and demonstration of integrating
 
 - Streamlit
 - YoloV8
-- Object-Detection on Images And Live Video Streams
+- Object-Detection on Brain Scans
 - Python-OpenCV
 
 Please note that this application is not designed or tested for production use. It serves as an educational resource and a showcase of technology integration rather than a production-ready web application.
-
-Contributors and users are welcome to explore, learn from, and build upon this project for educational purposes.
 
 ### Hit star ⭐ if you like this repo!!!
