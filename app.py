@@ -30,17 +30,16 @@ model_type = st.sidebar.radio(
 confidence = float(st.sidebar.slider(
     "Select Model Confidence", 25, 100, 40)) / 100
 
-# Selecting Detection Or Segmentation
-if model_type == 'Pre-Trained':
-    model_path = Path(settings.PT_MODEL)
-elif model_type == 'Exclusive':
-    model_path = Path(settings.EX_MODEL)
+# Selecting Detection Model
+pretrained_model_path = Path(settings.PT_MODEL)
+exclusive_model_path = Path(settings.EX_MODEL)
 
-# Load Pre-trained ML Model
+# Load Models
 try:
-    model = helper.load_model(model_path)
+    pretrained_model = helper.load_model(pretrained_model_path)
+    exclusive_model = helper.load_model(exclusive_model_path)
 except Exception as ex:
-    st.error(f"Unable to load model. Check the specified path: {model_path}")
+    st.error(f"Unable to load models. Check the specified paths.")
     st.error(ex)
 
 st.sidebar.header("Image/Video Config")
@@ -79,13 +78,12 @@ if source_radio == settings.IMAGE:
                      use_column_width=True)
         else:
             if st.sidebar.button('Detect Objects'):
-                res = model.predict(uploaded_image,
-                                    conf=confidence
-                                    )
-                boxes = res[0].boxes
+                res = pretrained_model.predict(uploaded_image,
+                                               conf=confidence)
                 res_plotted = res[0].plot()[:, :, ::-1]
-                st.image(res_plotted, caption='Detected Image',
+                st.image(res_plotted, caption='Detected Image (Pre-Trained Model)',
                          use_column_width=True)
+
     # Compare Models Button
     st.sidebar.markdown("---")
     if st.sidebar.button('Compare Models'):
@@ -95,15 +93,16 @@ if source_radio == settings.IMAGE:
 
         with col1:
             st.markdown("### Pre-Trained Model Output")
-            res_pretrained = settings.PT_MODEL.predict(uploaded_image, conf=confidence)
+            res_pretrained = pretrained_model.predict(uploaded_image, conf=confidence)
             res_pretrained_img = res_pretrained[0].plot()[:, :, ::-1]
             st.image(res_pretrained_img, caption="Pre-Trained Model Detection", use_column_width=True)
 
         with col2:
             st.markdown("### Exclusive Model Output")
-            res_exclusive = settings.EX_MODEL.predict(uploaded_image, conf=confidence)
+            res_exclusive = exclusive_model.predict(uploaded_image, conf=confidence)
             res_exclusive_img = res_exclusive[0].plot()[:, :, ::-1]
             st.image(res_exclusive_img, caption="Exclusive Model Detection", use_column_width=True)
 
         st.markdown("### 🧐 Observation:")
         st.write("The **Exclusive Model** is designed to offer enhanced precision and improved detection capabilities, minimizing false positives and ensuring better diagnosis.")
+
