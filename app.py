@@ -55,16 +55,24 @@ if source_radio == settings.IMAGE:
 
     col1, col2 = st.columns(2)
 
+    def resize_image(image, scale=0.5):
+        """Resize the image while maintaining aspect ratio"""
+        width, height = image.size
+        new_size = (int(width * scale), int(height * scale))
+        return image.resize(new_size)
+
     with col1:
         try:
             if source_img is None:
                 default_image_path = str(settings.DEFAULT_IMAGE)
                 default_image = PIL.Image.open(default_image_path)
-                st.image(default_image_path, caption="Default Image",
+                resized_default_image = resize_image(default_image)
+                st.image(resized_default_image, caption="Default Image",
                          use_column_width=True)
             else:
                 uploaded_image = PIL.Image.open(source_img)
-                st.image(source_img, caption="Uploaded Image",
+                resized_uploaded_image = resize_image(uploaded_image)
+                st.image(resized_uploaded_image, caption="Uploaded Image",
                          use_column_width=True)
         except Exception as ex:
             st.error("Error occurred while opening the image.")
@@ -73,16 +81,15 @@ if source_radio == settings.IMAGE:
     with col2:
         if source_img is None:
             default_detected_image_path = str(settings.DEFAULT_DETECT_IMAGE)
-            default_detected_image = PIL.Image.open(
-                default_detected_image_path)
-            st.image(default_detected_image_path, caption='Detected Image',
+            default_detected_image = PIL.Image.open(default_detected_image_path)
+            resized_default_detected_image = resize_image(default_detected_image)
+            st.image(resized_default_detected_image, caption='Detected Image',
                      use_column_width=True)
         else:
             if st.sidebar.button('Detect Objects'):
-                res = model.predict(uploaded_image,
-                                    conf=confidence
-                                    )
+                res = model.predict(uploaded_image, conf=confidence)
                 boxes = res[0].boxes
                 res_plotted = res[0].plot()[:, :, ::-1]
-                st.image(res_plotted, caption='Detected Image',
+                resized_res_plotted = resize_image(PIL.Image.fromarray(res_plotted))
+                st.image(resized_res_plotted, caption='Detected Image',
                          use_column_width=True)
