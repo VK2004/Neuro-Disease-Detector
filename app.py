@@ -77,34 +77,3 @@ if source_radio == settings.IMAGE:
                 default_detected_image_path)
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
-        else:
-            if st.sidebar.button('Detect Objects'):
-                res = model.predict(uploaded_image,
-                                    conf=confidence
-                                    )
-                boxes = res[0].boxes
-                res_plotted = res[0].plot()[:, :, ::-1]
-                st.image(res_plotted, caption='Detected Image',
-                         use_column_width=True)
-                try:
-                    with st.expander("Detection Results"):
-                        for box in boxes:
-                            st.write(box.data)
-                except Exception as ex:
-                    # st.write(ex)
-                    st.write("No image is uploaded yet!")
-
-elif source_radio == settings.VIDEO:
-    helper.play_stored_video(confidence, model)
-
-elif source_radio == settings.WEBCAM:
-    helper.play_webcam(confidence, model)
-
-elif source_radio == settings.RTSP:
-    helper.play_rtsp_stream(confidence, model)
-
-elif source_radio == settings.YOUTUBE:
-    helper.play_youtube_video(confidence, model)
-
-else:
-    st.error("Please select a valid source type!")
