@@ -35,7 +35,12 @@ if model_type == 'Pre-Trained':
     model_path = Path(settings.PT_MODEL)
 elif model_type == 'Exclusive':
     model_path = Path(settings.EX_MODEL)
-
+# Load Pre-trained ML Model
+try:
+    model = helper.load_model(model_path)
+except Exception as ex:
+    st.error(f"Unable to load model. Check the specified path: {model_path}")
+    st.error(ex)
 # Selecting Detection Model
 pretrained_model_path = Path(settings.PT_MODEL)
 exclusive_model_path = Path(settings.EX_MODEL)
@@ -85,7 +90,7 @@ if source_radio == settings.IMAGE:
         else:
             if st.sidebar.button('Detect Objects'):
 
-                res = model_path.predict(uploaded_image,
+                res = model.predict(uploaded_image,
                                                conf=confidence)
                 res_plotted = res[0].plot()[:, :, ::-1]
                 st.image(res_plotted, caption='Detected Image',
