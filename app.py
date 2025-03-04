@@ -78,10 +78,15 @@ if source_radio == settings.IMAGE:
                      use_column_width=True)
         else:
             if st.sidebar.button('Detect Objects'):
-                res = pretrained_model.predict(uploaded_image,
+                if model_type == 'Pre-Trained':
+                    model_path = Path(settings.PT_MODEL)
+                elif model_type == 'Exclusive':
+                    model_path = Path(settings.EX_MODEL)
+
+                res = model_path.predict(uploaded_image,
                                                conf=confidence)
                 res_plotted = res[0].plot()[:, :, ::-1]
-                st.image(res_plotted, caption='Detected Image (Pre-Trained Model)',
+                st.image(res_plotted, caption='Detected Image',
                          use_column_width=True)
 
     # Compare Models Button
