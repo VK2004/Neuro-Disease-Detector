@@ -87,7 +87,7 @@ if source_radio == settings.IMAGE:
                 default_detected_image_path)
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
-        else:
+        elif:
             if st.sidebar.button('Detect Objects'):
 
                 res = model.predict(uploaded_image,
