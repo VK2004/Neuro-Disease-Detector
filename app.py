@@ -87,7 +87,7 @@ if source_radio == settings.IMAGE:
                 default_detected_image_path)
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
-        elif:
+        else:
             if st.sidebar.button('Detect Objects'):
 
                 res = model.predict(uploaded_image,
@@ -96,7 +96,6 @@ if source_radio == settings.IMAGE:
                 st.image(res_plotted, caption='Detected Image',
                          use_column_width=True)
 
-        else:
             if st.sidebar.button('Compare Models'):
                 st.subheader("Model Comparison Results")
 
