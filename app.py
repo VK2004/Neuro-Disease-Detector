@@ -86,3 +86,24 @@ if source_radio == settings.IMAGE:
                 res_plotted = res[0].plot()[:, :, ::-1]
                 st.image(res_plotted, caption='Detected Image',
                          use_column_width=True)
+    # Compare Models Button
+    st.sidebar.markdown("---")
+    if st.sidebar.button('Compare Models'):
+        st.subheader("Model Comparison Results")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown("### Pre-Trained Model Output")
+            res_pretrained = pretrained_model.predict(uploaded_image, conf=confidence)
+            res_pretrained_img = res_pretrained[0].plot()[:, :, ::-1]
+            st.image(res_pretrained_img, caption="Pre-Trained Model Detection", use_column_width=True)
+
+        with col2:
+            st.markdown("### Exclusive Model Output")
+            res_exclusive = exclusive_model.predict(uploaded_image, conf=confidence)
+            res_exclusive_img = res_exclusive[0].plot()[:, :, ::-1]
+            st.image(res_exclusive_img, caption="Exclusive Model Detection", use_column_width=True)
+
+        st.markdown("### 🧐 Observation:")
+        st.write("The **Exclusive Model** is designed to offer enhanced precision and improved detection capabilities, minimizing false positives and ensuring better diagnosis.")
