@@ -95,13 +95,13 @@ if source_radio == settings.IMAGE:
 
         with col1:
             st.markdown("### Pre-Trained Model Output")
-            res_pretrained = pretrained_model.predict(uploaded_image, conf=confidence)
+            res_pretrained = settings.PT_MODEL.predict(uploaded_image, conf=confidence)
             res_pretrained_img = res_pretrained[0].plot()[:, :, ::-1]
             st.image(res_pretrained_img, caption="Pre-Trained Model Detection", use_column_width=True)
 
         with col2:
             st.markdown("### Exclusive Model Output")
-            res_exclusive = exclusive_model.predict(uploaded_image, conf=confidence)
+            res_exclusive = settings.EX_MODEL.predict(uploaded_image, conf=confidence)
             res_exclusive_img = res_exclusive[0].plot()[:, :, ::-1]
             st.image(res_exclusive_img, caption="Exclusive Model Detection", use_column_width=True)
 
