@@ -44,7 +44,7 @@ def _display_detected_frames(conf, model, st_frame, image, is_display_tracking=N
     """
 
     # Resize the image to a standard size
-    image = cv2.resize(image, (720, int(720*(9/16))))
+    image = cv2.resize(image, (512, int(512*(9/16))))
 
     # Display object tracking, if specified
     if is_display_tracking:
