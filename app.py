@@ -30,6 +30,12 @@ model_type = st.sidebar.radio(
 confidence = float(st.sidebar.slider(
     "Select Model Confidence", 25, 100, 40)) / 100
 
+
+if model_type == 'Pre-Trained':
+    model_path = Path(settings.PT_MODEL)
+elif model_type == 'Exclusive':
+    model_path = Path(settings.EX_MODEL)
+
 # Selecting Detection Model
 pretrained_model_path = Path(settings.PT_MODEL)
 exclusive_model_path = Path(settings.EX_MODEL)
@@ -78,10 +84,6 @@ if source_radio == settings.IMAGE:
                      use_column_width=True)
         else:
             if st.sidebar.button('Detect Objects'):
-                if model_type == 'Pre-Trained':
-                    model_path = Path(settings.PT_MODEL)
-                elif model_type == 'Exclusive':
-                    model_path = Path(settings.EX_MODEL)
 
                 res = model_path.predict(uploaded_image,
                                                conf=confidence)
