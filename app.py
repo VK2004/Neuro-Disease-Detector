@@ -77,3 +77,12 @@ if source_radio == settings.IMAGE:
                 default_detected_image_path)
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
+        else:
+            if st.sidebar.button('Detect Objects'):
+                res = model.predict(uploaded_image,
+                                    conf=confidence
+                                    )
+                boxes = res[0].boxes
+                res_plotted = res[0].plot()[:, :, ::-1]
+                st.image(res_plotted, caption='Detected Image',
+                         use_column_width=True)
