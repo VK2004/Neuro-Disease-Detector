@@ -6,6 +6,8 @@ This repository is an extensive open-source project showcasing the seamless inte
 ## <span style="color:deepskyblue">Explore Implementation Details on Medium </span>
 For a deeper dive into the implementation, check out my blog on [Medium](https://medium.com/@kurnalavishnu483/harnessing-yolov8-for-early-detection-of-neurodegenerative-diseases-a-game-changer-in-ai-driven-3759a3e0c1c7).
 
+## <span style="color:deepskyblue">Development of Exclusive Neurodegenerative Disease Detector</span>
+For testing the code and previewing the results, check out my [UltralyticsHUB](https://hub.ultralytics.com/projects/9Lgc684u3RS0MVn9MC4H) profile
 
 ## <span style="color:deepskyblue">WebApp Demo on Streamlit Server</span>
 
