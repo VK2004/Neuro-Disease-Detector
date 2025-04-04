@@ -88,7 +88,7 @@ if source_radio == settings.IMAGE:
             st.image(default_detected_image_path, caption='Detected Image',
                      use_column_width=True)
         else:
-            if st.sidebar.button('Detect Objects'):
+            if st.sidebar.button('Detect NDD Biomarker'):
 
                 res = model.predict(uploaded_image,
                                                conf=confidence)
